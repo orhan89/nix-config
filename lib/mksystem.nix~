@@ -1,0 +1,12 @@
+{ nixpkgs, inputs }:
+
+name:
+{
+  system,
+  user
+}:
+
+let
+  machineConfig = ../machines/${name}.nix;
+  userOSConfig = ../users/${user}/nixos.nix;
+  userHMConfig = ../users/${user}/home-manager.nix
