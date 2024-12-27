@@ -5,6 +5,7 @@
 (global-set-key (kbd "C-h") 'backward-kill-word)
 (global-set-key (kbd "C-t") 'previous-line)
 (global-set-key (kbd "M-z") 'execute-extended-command)
+(global-set-key (kbd "C-c C-n") 'helm-nixos-options)
 
 ;; add path to nix-profiles
 
@@ -89,6 +90,7 @@ See also `org-save-all-org-buffers'"
 (use-package org
   :ensure t
   :mode ("\\.org\\'" . org-mode)
+  (require 'bind-key)
   :bind (
          ("C-c l" . org-store-link)
          ("C-c c" . org-capture)
@@ -148,3 +150,9 @@ See also `org-save-all-org-buffers'"
 
 ;; (use-package forge
 ;;   :after magit)
+
+;; (add-to-list 'company-backends 'company-nixos-options)
+
+(use-package company
+  :hook (prog-mode . company-mode)
+  :init)

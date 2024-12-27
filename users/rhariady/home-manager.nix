@@ -7,27 +7,16 @@ let
   isDarwin = pkgs.stdenv.isDarwin;
   isLinux = pkgs.stdenv.isLinux;
 
-  # For our MANPAGER env var
-  # https://github.com/sharkdp/bat/issues/1145
-  manpager = (pkgs.writeShellScriptBin "manpager" (if isDarwin then ''
-    sh -c 'col -bx | bat -l man -p'
-    '' else ''
-    cat "$1" | col -bx | bat --language man --style plain
-  ''));
 in {
-  # Home-manager 22.11 requires this be set. We never set it so we have
-  # to use the old state version.
   home.stateVersion = "24.11";
 
   xdg.enable = true;
+  # xresources.extraConfig = builtins.readFile ./Xresources;
 
   #---------------------------------------------------------------------
   # Packages
   #---------------------------------------------------------------------
 
-  # Packages I always want installed. Most packages I install using
-  # per-project flakes sourced with direnv and nix-shell, so this is
-  # not a huge list.
   home.packages = [
     pkgs.htop
     pkgs.jq
@@ -42,30 +31,10 @@ in {
     LANG = "en_US.UTF-8";
     LC_CTYPE = "en_US.UTF-8";
     LC_ALL = "en_US.UTF-8";
-    EDITOR = "nvim";
+    EDITOR = "emacs-client";
     PAGER = "less -FirSwX";
-    MANPAGER = "${manpager}/bin/manpager";
   };
 
-  # home.file = {
-  #   ".gdbinit".source = ./gdbinit;
-  #   ".inputrc".source = ./inputrc;
-  # };
-  
-  # xdg.configFile = {
-  #   "i3/config".text = builtins.readFile ./i3;
-  #   "rofi/config.rasi".text = builtins.readFile ./rofi;
-
-  #   # tree-sitter parsers
-  #   "nvim/parser/proto.so".source = "${pkgs.tree-sitter-proto}/parser";
-  #   "nvim/queries/proto/folds.scm".source =
-  #     "${sources.tree-sitter-proto}/queries/folds.scm";
-  #   "nvim/queries/proto/highlights.scm".source =
-  #     "${sources.tree-sitter-proto}/queries/highlights.scm";
-  #   "nvim/queries/proto/textobjects.scm".source =
-  #     ./textobjects.scm;
-  # };
-  
   #---------------------------------------------------------------------
   # Programs
   #---------------------------------------------------------------------
@@ -164,7 +133,7 @@ in {
 
   programs.go = {
     enable = true;
-    goPath = "code/go";
+    goPath = "Projects";
     goPrivate = [ "github.com/orhan89" ];
   };
 
@@ -185,55 +154,6 @@ in {
       bind -n C-k send-keys "clear"\; send-keys "Enter"
     '';
   };
-
-  programs.alacritty = {
-    enable = true;
-
-    settings = {
-      env.TERM = "xterm-256color";
-
-      key_bindings = [
-        { key = "K"; mods = "Command"; chars = "ClearHistory"; }
-        { key = "V"; mods = "Command"; action = "Paste"; }
-        { key = "C"; mods = "Command"; action = "Copy"; }
-        { key = "Key0"; mods = "Command"; action = "ResetFontSize"; }
-        { key = "Equals"; mods = "Command"; action = "IncreaseFontSize"; }
-        { key = "Subtract"; mods = "Command"; action = "DecreaseFontSize"; }
-      ];
-    };
-  };
-
-  # programs.kitty = {
-  #   enable = true;
-  #   extraConfig = builtins.readFile ./kitty;
-  # };
-
-  programs.i3status = {
-    enable = true;
-
-    general = {
-      colors = true;
-      color_good = "#8C9440";
-      color_bad = "#A54242";
-      color_degraded = "#DE935F";
-    };
-
-    modules = {
-      ipv6.enable = false;
-      "wireless _first_".enable = false;
-      "battery all".enable = false;
-    };
-  };
-
-  # xresources.extraConfig = builtins.readFile ./Xresources;
-
-  # Make cursor not tiny on HiDPI screens
-  # home.pointerCursor = lib.mkIf (isLinux && !isWSL) {
-  #   name = "Vanilla-DMZ";
-  #   package = pkgs.vanilla-dmz;
-  #   size = 128;
-  #   x11.enable = true;
-  # };
 
   programs.emacs = {
     enable = true;
@@ -265,6 +185,9 @@ in {
       epkgs.company-quickhelp
       epkgs.async
       epkgs.ansible
+      epkgs.nixos-options
+      epkgs.company-nixos-options
+      epkgs.helm-nixos-options
     ];
     extraConfig = builtins.readFile ./config/emacs;
   };
