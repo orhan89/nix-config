@@ -240,6 +240,32 @@ in {
     extraPackages = epkgs: [
       epkgs.nix-mode
       epkgs.magit
+      epkgs.org
+      epkgs.zenburn-theme
+      epkgs.web-mode
+      epkgs.use-package
+      epkgs.terraform-doc
+      epkgs.terraform-mode
+      epkgs.lsp-ui
+      epkgs.lsp-treemacs
+      epkgs.kubernetes
+      epkgs.kubernetes-helm
+      epkgs.kubedoc
+      epkgs.kubectx-mode
+      epkgs.k8s-mode
+      epkgs.json-mode
+      epkgs.jedi
+      epkgs.go-mode
+      epkgs.flymake-go
+      epkgs.flymake-easy
+      epkgs.flycheck-yamllint
+      epkgs.csv-mode
+      epkgs.csv
+      epkgs.company-terraform
+      epkgs.company-quickhelp
+      epkgs.async
+      epkgs.ansible
     ];
+    extraConfig = builtins.readFile ./config/emacs;
   };
 }
