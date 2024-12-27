@@ -156,7 +156,7 @@ in {
       color.ui = true;
       core.askPass = ""; # needs to be empty to use terminal for ask pass
       credential.helper = "store"; # want to make this more secure
-      github.user = "mitchellh";
+      github.user = "orhan89";
       push.default = "tracking";
       init.defaultBranch = "main";
     };
@@ -234,4 +234,12 @@ in {
   #   size = 128;
   #   x11.enable = true;
   # };
+
+  programs.emacs = {
+    enable = true;
+    extraPackages = epkgs: [
+      epkgs.nix-mode
+      epkgs.magit
+    ];
+  };
 }
