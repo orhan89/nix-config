@@ -18,18 +18,18 @@
   virtualisation.vmware.guest.enable = true;
 
   # Share our host filesystem
-  # fileSystems."/host" = {
-  #   fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
-  #   device = ".host:/";
-  #   options = [
-  #     "umask=22"
-  #     "uid=1000"
-  #     "gid=1000"
-  #     "allow_other"
-  #     "auto_unmount"
-  #     "defaults"
-  #   ];
-  # };
+  fileSystems."/host" = {
+    fsType = "fuse./run/current-system/sw/bin/vmhgfs-fuse";
+    device = ".host:/";
+    options = [
+      "umask=22"
+      "uid=1000"
+      "gid=1000"
+      "allow_other"
+      "auto_unmount"
+      "defaults"
+    ];
+  };
 
   # boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -58,8 +58,14 @@
     enable = true;
     xkb.layout = "us";
     xkb.variant = "dvorak";
-    desktopManager.xfce.enable = true;
-    displayManager.lightdm.enable = true;
+    windowManager.xmonad.enable = true;
+    # desktopManager.xmonad.enableContribAndExtras = true;
+    displayManager.lightdm = {
+      enable = true;
+      greeters.mini = {
+        enable = false;
+      };
+    };
   };
 
   console.keyMap = "dvorak";
