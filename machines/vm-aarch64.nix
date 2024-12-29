@@ -58,8 +58,20 @@
     enable = true;
     xkb.layout = "us";
     xkb.variant = "dvorak";
+    dpi = 180;
     windowManager.xmonad.enable = true;
-    # desktopManager.xmonad.enableContribAndExtras = true;
+    windowManager.xmonad.enableContribAndExtras = true;
+    windowManager.xmonad.config = "
+        import XMonad
+
+        import XMonad.Util.EZConfig
+        main :: IO ()
+        main = xmonad $ def
+         {
+           terminal = \"urxvt\"
+         }
+    ";
+
     displayManager.lightdm = {
       enable = true;
       greeters.mini = {

@@ -11,7 +11,7 @@ in {
   home.stateVersion = "24.11";
 
   xdg.enable = true;
-  # xresources.extraConfig = builtins.readFile ./Xresources;
+  xresources.extraConfig = builtins.readFile ./config/Xresources;
 
   #---------------------------------------------------------------------
   # Packages
@@ -190,5 +190,12 @@ in {
       epkgs.helm-nixos-options
     ];
     extraConfig = builtins.readFile ./config/emacs;
+  };
+
+  programs.urxvt = {
+    enable = true;
+    fonts = [
+      "xft:DejaVu Sans Mono"
+    ];
   };
 }
