@@ -206,5 +206,5 @@ myConfig xmproc = def {
     }
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar"
+    xmproc <- spawnPipe "/etc/profiles/per-user/rhariady/bin/xmobar"
     xmonad $ ewmh $ myConfig xmproc
