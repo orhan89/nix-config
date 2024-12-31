@@ -2,7 +2,7 @@ Config {
        font = "xft:MesloLGM:size=8.5:bold:antialias=true"
        , bgColor = "#242424"
        , fgColor = "gray"
-       , position = TopW L 90
+       , position = TopW L 100
        , commands = [ Run Cpu ["-L","3","-H","50","-l","gray90","-n","gray90","-h","#F25555"] 10
                     , Run Memory ["-t","Mem: <usedratio>%","-H","80","-L","10","-l","gray90","-n","gray90","-h","#F25555"] 10
                     , Run Date "%a %b %_d %k:%M" "date" 10
