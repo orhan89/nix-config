@@ -210,6 +210,7 @@ in {
 
   programs.rofi = {
     enable = true;
+    theme = "blue";
   };
 
   programs.xmobar = {
