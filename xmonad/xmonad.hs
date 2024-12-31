@@ -40,14 +40,14 @@ myClickJustFocuses = False
 
 -- Width of the window border in pixels.
 --
-myBorderWidth   = 4
+myBorderWidth   = 1
 
 -- modMask lets you specify which modkey you want to use. The default
 -- is mod1Mask ("left alt").  You may also consider using mod3Mask
 -- ("right alt"), which does not conflict with emacs keybindings. The
 -- "windows key" is usually mod4Mask.
 --
-myModMask       = mod4Mask
+myModMask       = mod1Mask
 
 myWorkspaces = map show [1..8] ++ ["NSP"]
 
@@ -206,5 +206,5 @@ myConfig xmproc = def {
     }
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/rhariady/.config/xmobar/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar"
     xmonad $ ewmh $ myConfig xmproc
