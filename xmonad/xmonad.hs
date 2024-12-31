@@ -56,6 +56,11 @@ myWorkspaces = map show [1..8] ++ ["NSP"]
 myNormalBorderColor  = "black"
 myFocusedBorderColor = "#69DFFA"   --"#E39402"    #00F2FF
 
+hiddenNotNSP :: X (WindowSpace -> Bool)
+hiddenNotNSP = do
+  hs <- gets $ map W.tag . W.hidden . windowset
+  return (\w -> (W.tag w) /= "NSP" && (W.tag w) `elem` hs)
+
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- launch a terminal
@@ -68,7 +73,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_c     ), kill)
 
     -- Grid Select
-    , ((modm,               xK_g     ), goToSelected defaultGSConfig)
+    --, ((modm,               xK_g     ), goToSelected defaultGSConfig)
 
      -- Rotate through the available layout algorithms
     , ((modm,               xK_space ), sendMessage NextLayout)
@@ -90,11 +95,11 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Move focus to the master window
     --, ((modm,               xK_m     ), windows W.focusMaster  )
-    , ((modm,               xK_m     ), withFocused minimizeWindow)
-    , ((modm .|. shiftMask, xK_m     ), sendMessage RestoreNextMinimizedWin)
+    --, ((modm,               xK_m     ), withFocused minimizeWindow)
+    --, ((modm .|. shiftMask, xK_m     ), sendMessage RestoreNextMinimizedWin)
 
     -- Maximize selected window
-    , ((modm, 				xK_f     ), (sendMessage $ Toggle FULL))
+    , ((modm, xK_f     ), (sendMessage $ Toggle FULL))
 
     -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
@@ -196,10 +201,10 @@ myConfig xmproc = def {
         layoutHook         = myLayout,
         -- manageHook         = myManageHook,
         -- handleEventHook    = myEventHook,
-        logHook            = myLogHook xmproc,
+        logHook            = myLogHook xmproc
         -- startupHook        = myStartupHook
     }
 
 main = do
-    xmproc <- spawnPipe "/usr/bin/xmobar /home/rhariady/.xmobarrc"
+    xmproc <- spawnPipe "/usr/bin/xmobar /home/rhariady/.config/xmobar/.xmobarrc"
     xmonad $ ewmh $ myConfig xmproc
