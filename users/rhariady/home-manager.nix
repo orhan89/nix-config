@@ -21,6 +21,15 @@ in {
     pkgs.htop
     pkgs.jq
     pkgs.watch
+    pkgs.google-cloud-sdk
+    pkgs.kubectl
+    pkgs.kubectx
+    pkgs.k9s
+    pkgs.yamllint
+    pkgs.pre-commit
+    pkgs.tfswitch
+    pkgs.terraform-docs
+    pkgs.tflint
   ];
 
   #---------------------------------------------------------------------
@@ -197,5 +206,13 @@ in {
     fonts = [
       "xft:DejaVu Sans Mono"
     ];
+  };
+
+  programs.rofi = {
+    enable = true;
+  };
+
+  programs.xmobar = {
+    enable = true;
   };
 }

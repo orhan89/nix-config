@@ -58,19 +58,14 @@
     enable = true;
     xkb.layout = "us";
     xkb.variant = "dvorak";
-    dpi = 180;
+    dpi = 100;
     windowManager.xmonad.enable = true;
     windowManager.xmonad.enableContribAndExtras = true;
-    windowManager.xmonad.config = "
-        import XMonad
-
-        import XMonad.Util.EZConfig
-        main :: IO ()
-        main = xmonad $ def
-         {
-           terminal = \"urxvt\"
-         }
-    ";
+    windowManager.xmonad.extraPackages = hPkgs: [
+      hPkgs.xmobar
+      hPkgs.yeganesh
+    ];
+    windowManager.xmonad.config = builtins.readFile ../xmonad/xmonad.hs;
 
     displayManager.lightdm = {
       enable = true;
