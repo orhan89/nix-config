@@ -58,7 +58,7 @@
     enable = true;
     xkb.layout = "us";
     xkb.variant = "dvorak";
-    dpi = 100;
+    dpi = 180;
     windowManager.xmonad.enable = true;
     windowManager.xmonad.enableContribAndExtras = true;
     windowManager.xmonad.extraPackages = hPkgs: [
