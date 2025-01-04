@@ -99,7 +99,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     --, ((modm .|. shiftMask, xK_m     ), sendMessage RestoreNextMinimizedWin)
 
     -- Maximize selected window
-    , ((modm, xK_f     ), (sendMessage $ Toggle FULL))
+    --, ((modm, xK_f     ), (sendMessage $ Toggle FULL))
 
     -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
