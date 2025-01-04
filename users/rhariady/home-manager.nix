@@ -227,4 +227,9 @@ in {
     enable = true;
     extraConfig = builtins.readFile ./config/xmobar;
   };
+
+  programs.ghostty = {
+    enable = true;
+    enableFishIntegration = true;
+  }
 }
