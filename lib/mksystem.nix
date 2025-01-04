@@ -13,7 +13,6 @@ let
 
   systemFunc = nixpkgs.lib.nixosSystem;
   home-manager = inputs.home-manager.nixosModules;
-
 in systemFunc rec {
   inherit system;
 
