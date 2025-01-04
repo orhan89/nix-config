@@ -18,18 +18,24 @@ in {
   #---------------------------------------------------------------------
 
   home.packages = [
-    pkgs.htop
-    pkgs.jq
+    pkgs.glab
+    pkgs.yq-go
     pkgs.watch
-    pkgs.google-cloud-sdk
+    (pkgs.google-cloud-sdk.withExtraComponents [
+      pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
+    ])
     pkgs.kubectl
     pkgs.kubectx
     pkgs.k9s
     pkgs.yamllint
+    pkgs.yamlfix
     pkgs.pre-commit
     pkgs.tfswitch
     pkgs.terraform-docs
     pkgs.tflint
+    pkgs.kubernetes-helm
+    pkgs.helm-docs
+    pkgs.pluto
   ];
 
   #---------------------------------------------------------------------
@@ -49,6 +55,10 @@ in {
   #---------------------------------------------------------------------
 
   # programs.gpg.enable = !isDarwin;
+
+  programs.htop.enable = true;
+
+  programs.jq.enable = true;
 
   programs.bash = {
     enable = true;
