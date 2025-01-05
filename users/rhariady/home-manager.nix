@@ -207,6 +207,7 @@ in {
       epkgs.nixos-options
       epkgs.company-nixos-options
       epkgs.helm-nixos-options
+      epkgs.gptel
     ];
     extraConfig = builtins.readFile ./config/emacs;
   };
