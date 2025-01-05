@@ -24,11 +24,14 @@ in systemFunc rec {
     home-manager.home-manager {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
+      home-manager.sharedModules = [
+        inputs.sops-nix.homeManagerModules.sops
+      ];
       home-manager.users.${user} = import userHMConfig {
         inputs = inputs;
       };
     }
-    inputs.sops-nix.nixosModules.sops
+    # inputs.sops-nix.nixosModules.sops
 
     {
       config._module.args = {
