@@ -28,7 +28,7 @@ import System.Exit
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
 
-myTerminal      = "urxvt"
+myTerminal      = "ghostty"
 
 -- Whether focus follows the mouse pointer.
 myFocusFollowsMouse :: Bool
