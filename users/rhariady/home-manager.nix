@@ -231,5 +231,11 @@ in {
   programs.ghostty = {
     enable = true;
     enableFishIntegration = true;
+    settings = {
+      theme = "rose-pine";
+      font-size = 20;
+      font-family = "DeJaVu Sans Mono";
+      window-decoration = false;
+    };
   };
 }
