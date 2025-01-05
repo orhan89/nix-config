@@ -28,6 +28,7 @@ in systemFunc rec {
         inputs = inputs;
       };
     }
+    sops-nix.nixosModules.sops
 
     {
       config._module.args = {
