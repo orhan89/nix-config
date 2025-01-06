@@ -30,8 +30,10 @@ in {
     pkgs.yamllint
     pkgs.yamlfix
     pkgs.pre-commit
-    pkgs.tfswitch
+    pkgs.terraform
     pkgs.terraform-docs
+    pkgs.terraform-ls
+    pkgs.tfswitch
     pkgs.tflint
     pkgs.kubernetes-helm
     pkgs.helm-docs
@@ -185,6 +187,7 @@ in {
       epkgs.use-package
       epkgs.terraform-doc
       epkgs.terraform-mode
+      epkgs.lsp-mode
       epkgs.lsp-ui
       epkgs.lsp-treemacs
       epkgs.kubernetes
@@ -208,6 +211,7 @@ in {
       epkgs.company-nixos-options
       epkgs.helm-nixos-options
       epkgs.gptel
+      epkgs.yasnippet
     ];
     extraConfig = builtins.readFile ./config/emacs;
   };
